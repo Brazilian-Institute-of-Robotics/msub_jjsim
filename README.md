@@ -118,3 +118,14 @@ Press F1 to create a series of screenshots. Hit ESCAPE to exit the demo app.
 Check out the docs folder and the Bullet physics forums for further information.
 
 ----------------------------------------------------------------------------------------------------
+
+## Simulate Jackal with Jaco2
+
+To simulate Jackal with Jaco2, follow the steps:
+
+cd ~/msub_jjsim/examples/pybulletexamples
+python3 inverse_kinematics_jj.py
+
+## Report a Bug about inverse_kinematics_jj.py
+
+Any bugs, issues or suggestions may be sent to ....
