@@ -124,6 +124,7 @@ Check out the docs folder and the Bullet physics forums for further information.
 To simulate Jackal with Jaco2, follow the steps:
 
 cd ~/msub_jjsim/examples/pybulletexamples
+
 python3 inverse_kinematics_jj.py
 
 ## Report a Bug about inverse_kinematics_jj.py
