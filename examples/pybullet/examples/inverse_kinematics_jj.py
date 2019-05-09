@@ -22,7 +22,7 @@ for jointIndex in range (p.getNumJoints(ob)):
 
 #put jaco on top of jackal
 
-cid = p.createConstraint(jackal,-1,jaco,-1,p.JOINT_FIXED,[0,0,0],[0,0,0],[0.,0.,-.5],[0,0,0,1])
+cid = p.createConstraint(jackal,-1,jaco,-1,p.JOINT_FIXED,[0,0,0],[0,0,0],[0.,0.,-.343],[0,0,0,1])
 
 
 baseorn = p.getQuaternionFromEuler([3.1415,0,0.3])
@@ -96,12 +96,11 @@ wheels=[2,3,4,5]
 wheelVelocities=[0,0,0,0]
 wheelDeltasTurn=[1,-1,1,-1]
 wheelDeltasFwd=[1,1,1,1]
-p.getCameraImage(320,200, flags=p.ER_SEGMENTATION_MASK_OBJECT_AND_LINKINDEX, renderer=p.ER_BULLET_HARDWARE_OPENGL)
 while 1:
 	keys = p.getKeyboardEvents()
 	shift = 0.01
 	wheelVelocities=[0,0,0,0]
-	speed = 1.0
+	speed = 5.0
 	for k in keys:
 		if ord('s') in keys:
 				p.saveWorld("state.py")
@@ -171,3 +170,5 @@ while 1:
 	prevPose=pos
 	prevPose1=ls[4]
 	hasPrevPose = 1		
+	p.getCameraImage(320,200, flags=p.ER_SEGMENTATION_MASK_OBJECT_AND_LINKINDEX, renderer=p.ER_BULLET_HARDWARE_OPENGL)
+
