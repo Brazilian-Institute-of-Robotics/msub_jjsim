@@ -1,8 +1,15 @@
+#!/usr/bin/env python
+import rospy
+from std_msgs.msg import Float64MultiArray
 import pybullet as p
 import time
 import math
 from datetime import datetime
 from datetime import datetime
+
+pub = rospy.Publisher('/joint_state', Float64MultiArray)
+rospy.init_node('bullet_bridge')
+msg = Float64MultiArray()
 
 clid = p.connect(p.SHARED_MEMORY)
 if (clid<0):
@@ -22,7 +29,7 @@ for jointIndex in range (p.getNumJoints(ob)):
 
 #put jaco on top of jackal
 
-cid = p.createConstraint(jackal,-1,jaco,-1,p.JOINT_FIXED,[0,0,0],[0,0,0],[0.,0.,-.343],[0,0,0,1])
+cid = p.createConstraint(jackal,-1,jaco,-1,p.JOINT_FIXED,[0,0,0],[0,0,0],[0.,0.,-.32],[0,0,0,1])
 
 
 baseorn = p.getQuaternionFromEuler([3.1415,0,0.3])
@@ -96,7 +103,7 @@ wheels=[2,3,4,5]
 wheelVelocities=[0,0,0,0]
 wheelDeltasTurn=[1,-1,1,-1]
 wheelDeltasFwd=[1,1,1,1]
-while 1:
+while not rospy.is_shutdown():
 	keys = p.getKeyboardEvents()
 	shift = 0.01
 	wheelVelocities=[0,0,0,0]
@@ -171,4 +178,11 @@ while 1:
 	prevPose1=ls[4]
 	hasPrevPose = 1		
 	p.getCameraImage(320,200, flags=p.ER_SEGMENTATION_MASK_OBJECT_AND_LINKINDEX, renderer=p.ER_BULLET_HARDWARE_OPENGL)
+	joint_positions = [j[0] for j in p.getJointStates(jaco, range(7))]
+	#joint_positions
+	msg.data = joint_positions
+	pub.publish(msg)
+	print(msg.data[1])
+	#msg.data[2]
+	input("Press Enter to continue...")
 
