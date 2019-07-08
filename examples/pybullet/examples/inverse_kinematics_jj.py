@@ -22,7 +22,7 @@ for jointIndex in range (p.getNumJoints(ob)):
 
 #put jaco on top of jackal
 
-cid = p.createConstraint(jackal,-1,jaco,-1,p.JOINT_FIXED,[0,0,0],[0,0,0],[0.,0.,-.343],[0,0,0,1])
+cid = p.createConstraint(jackal,-1,jaco,-1,p.JOINT_FIXED,[0,0,0],[0,0,0],[0.,0.,-.31],[0,0,0,1])
 
 
 baseorn = p.getQuaternionFromEuler([3.1415,0,0.3])
